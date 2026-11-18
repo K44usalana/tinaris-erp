@@ -1590,10 +1590,7 @@ function initStateLegacy(){
    s.ledger.push({time:'Saldo awal simulasi',date:s.date,doc:'AWAL-DEMO',loc:l.id,pid:id,delta:qty,after:qty,reason:'Saldo awal contoh',costTotal:qty*unitCost,nonValuated:p.non});
   }
  }
- s.purchases.push({id:'PR-DEMO-001',po:'PO-DEMO-001',status:'PO Terbit',loc:'BNY-GDG',date:s.date,supplier:D.suppliers[0].name,reason:'Contoh kebutuhan Gudang pusat',items:[{pid:pid('Bawang Merah'),qty:1000,received:0,price:40},{pid:pid('Bawang Putih'),qty:500,received:0,price:35}],receipts:[],approvedTotal:57500,createdBy:'Warehouse Spv · simulasi',createdActor:'warehouse:BNY',poCreator:'procurement:ALL',poApprovedBy:'owner:ALL'});
- s.productions.push({id:'PROD-DEMO-001',status:'Disetujui',loc:'BNY-CK',date:s.date,recipe:'Gula Cair',batch:1,target:10000,output:pid('Gula Cair'),unit:'gr',items:[{pid:pid('Gula Pasir 50 kg'),qty:5000},{pid:pid('Air Galon'),qty:5000}],actual:0,reason:'',createdBy:'Central Kitchen',createdActor:'ck:BNY'});
- s.transfers.push({id:'TF-DEMO-001',status:'Disetujui',date:s.date,from:'BNY-CK',to:'MGS-DRK',reason:'WIP Gula Cair dari CK',items:[{pid:pid('Gula Cair'),qty:1000,received:0,returned:0,lost:0}],createdBy:'Drinkmaker Mugassari',createdActor:'drink:MGS'});
- s.logs.push({time:now(),actor:'Simulasi',text:'Revisi 5.0 dimulai dengan saldo dan tiga dokumen latihan. Parameter minimum/target belum diatur.',doc:'DEMO',loc:''});
+ s.logs.push({time:now(),actor:'Sistem',text:'Sistem dimulai. Data operasional dikelola melalui backend.',doc:'',loc:''});
  return s;
 }
 /* Validate persisted envelopes before rendering business data. */
@@ -3407,7 +3404,7 @@ renderApp=function(){v8RenderPrevious.apply(this,arguments);document.body.classL
  const head=$('.app-head',body),bar=$('.v7-date-bar',body);if(head&&bar)head.insertAdjacentElement('afterend',bar);
  if(['purchase','production','usage'].includes(S.module)){for(const n of [...body.children])if(n.matches('.notice.info')){const d=document.createElement('details');d.className='v7-help v8-module-help mb';d.innerHTML='<summary>'+({purchase:'Alur pengadaan & harga nota',production:'Panduan pencatatan produksi',usage:'Panduan pemakaian & jurnal'}[S.module])+'</summary>';n.before(d);d.append(n);}}
  const reports=$$('.table-wrap',body);reports.forEach((e,i)=>{const title=e.querySelector('th')?.textContent||'data';e.setAttribute('aria-label','Tabel '+title+'; gulir untuk melihat rincian');$$('thead th',e).forEach(th=>th.setAttribute('scope','col'));});
- $('#v8-local-marker')?.remove();const context=$('.v6-context-copy');if(context)context.insertAdjacentHTML('beforeend','<span id="v8-local-marker">Simulasi</span>');
+ $('#v8-local-marker')?.remove();
  v8StorageBanner();
 };
 const v8NavigatePrevious=navigate;
@@ -3819,4 +3816,5 @@ if(typeof document!=='undefined'&&$('#v10-login'))v10Init();
  console.log('TINARIS API Bridge v1.0 aktif. Backend: '+API_URL);
 })();
 </script>
+<script id="tinaris-fase1-batch-e" src="batch-e.js"></script>
 </body></html>
